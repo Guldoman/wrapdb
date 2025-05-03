@@ -250,14 +250,7 @@ if host_machine.system() == 'linux'
   cdata.set('SDL_VIDEO_VULKAN', 1)
   cdata.set('SDL_VIDEO_RENDER_VULKAN', 1)
   cdata.set('SDL_TIMER_UNIX', 1)
-  sdl_deps += dependency('libudev')
   sdl_deps += dependency('dbus-1')
-  sdl_deps += dependency('libpipewire-0.3')
-  sdl_deps += dependency('wayland-client')
-  sdl_deps += dependency('wayland-egl')
-  sdl_deps += dependency('wayland-cursor')
-  # sdl_deps += dependency('xkbcommon')
-  sdl_deps += dependency('xkbcommon')
   cdata.set('HAVE_DBUS_DBUS_H', 1)
   wayland_scanner = find_program('wayland-scanner')
   subdir('wayland-protocols')
@@ -324,11 +317,6 @@ if get_option('default_library') == 'both' and cc.get_argument_syntax() == 'msvc
 endif
 
 subdir('src')
-
-# FIXME, this is to work around a bug in upstream headers
-cdata.set('SDL_LIBDECOR_VERSION_MAJOR', 99)
-cdata.set('SDL_LIBDECOR_VERSION_MINOR', 99)
-cdata.set('SDL_LIBDECOR_VERSION_PATCH', 99)
 
 configure_file(
   input: 'include/build_config/SDL_build_config.h.cmake',
