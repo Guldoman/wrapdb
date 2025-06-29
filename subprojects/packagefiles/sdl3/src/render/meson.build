@@ -1,5 +1,4 @@
-opt_use_render = get_option('use_render')
-opt_use_render.disable_if(
+opt_use_render = get_option('use_render').disable_if(
   get_option('use_video').disabled(),
   error_message: 'use_render requires use_video'
 )
